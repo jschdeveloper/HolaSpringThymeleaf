@@ -1,5 +1,9 @@
 package com.jschdeveloper;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +26,13 @@ public class ControladorInicio {
 		String mensaje = "Mensaje con thymeleaf:";
 		Persona persona = new Persona("Jesús", "Sánchez", "jesus.sanchez@gmail.com", "2288461196");
 
+		Persona persona2 = new Persona("Tania", "Juarez", "tania.juarez@gmail.com", "22255662244");
+
+		List<Persona> personas = Arrays.asList(persona, persona2);
+
 		model.addAttribute("mensaje", mensaje);
 		model.addAttribute("saludo", saludo);
-		model.addAttribute("persona", persona);
+		model.addAttribute("personas", personas);
 
 		return "index";
 	}
