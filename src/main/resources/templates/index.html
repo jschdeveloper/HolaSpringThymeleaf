@@ -8,6 +8,7 @@
 
 <body>
   <h1>Inicio Thymeleaf</h1>
+  <a th:href="@{/agregar}">Crear Persona</a>
 
   <div th:if="${personas != null and !personas.empty}">
     <table border="1">
@@ -16,6 +17,8 @@
         <th>Apellido</th>
         <th>Email</th>
         <th>Telefono</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
       </tr>
 
       <tr th:each="persona : ${personas}">
@@ -23,6 +26,8 @@
         <td th:text="${persona.apellido}">Mostrar apellido</td>
         <td th:text="${persona.email}">Mostrar email</td>
         <td th:text="${persona.telefono}">Mostrar telefono</td>
+        <td><a th:href="@{/editar/} + ${persona.idPersona}" th:text="Editar"></a></td>
+        <td><a th:href="@{/eliminar(idPersona=${persona.idPersona})}" th:text="Eliminar"></a></td>
 
       </tr>
 
