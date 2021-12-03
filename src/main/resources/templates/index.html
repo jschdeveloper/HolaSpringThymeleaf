@@ -8,33 +8,33 @@
 
 <body>
   <header th:replace="layout/plantilla :: header" />
-  <a th:href="@{/agregar}">Crear Persona</a>
+  <a th:href="@{/agregar}" th:text="#{title.person.create}"></a>
 
   <div th:if="${personas != null and !personas.empty}">
     <table border="1">
       <tr>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Email</th>
-        <th>Telefono</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
+        <th>[[#{title.name}]]</th>
+        <th>[[#{title.lastname}]]</th>
+        <th>[[#{title.email}]]</th>
+        <th>[[#{title.phone}]]</th>
+        <th>[[#{button.person.edit}]]</th>
+        <th>[[#{button.person.delete}]]</th>
       </tr>
 
       <tr th:each="persona : ${personas}">
-        <td th:text="${persona.nombre}">Mostrar nombre</td>
-        <td th:text="${persona.apellido}">Mostrar apellido</td>
-        <td th:text="${persona.email}">Mostrar email</td>
-        <td th:text="${persona.telefono}">Mostrar telefono</td>
-        <td><a th:href="@{/editar/} + ${persona.idPersona}" th:text="Editar"></a></td>
-        <td><a th:href="@{/eliminar(idPersona=${persona.idPersona})}" th:text="Eliminar"></a></td>
+        <td th:text="${persona.nombre}"></td>
+        <td th:text="${persona.apellido}"></td>
+        <td th:text="${persona.email}"></td>
+        <td th:text="${persona.telefono}"></td>
+        <td><a th:href="@{/editar/} + ${persona.idPersona}" th:text="#{button.person.edit}"></a></td>
+        <td><a th:href="@{/eliminar(idPersona=${persona.idPersona})}" th:text="#{button.person.delete}"></a></td>
 
       </tr>
 
     </table>
   </div>
   <div th:if="${personas == null or personas.empty}">
-    La lista de personas esta vacía
+    [[#{message.empty.list}]]
   </div>
 
   <footer th:replace="layout/plantilla :: footer" />

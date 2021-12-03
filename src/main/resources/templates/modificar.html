@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <title>Datos de la persona
+  <title>[[#{title.person.info}]]
 
   </title>
   <meta charset="UTF-8">
@@ -11,32 +11,33 @@
 <body>
   <header th:replace="layout/plantilla :: header" />
 
-  <h2>Datos de la persona</h2>
-  <a th:href="@{/}">Regresar</a>
+  <h2>[[#{title.person.info}]]</h2>
+  <a th:href="@{/}">[[#{button.return}]]</a>
   <br />
 
   <form th:action="@{/guardar}" method="post" th:object="${persona}">
     <input type="hidden" name="idPersona" th:field="*{idPersona}" />
 
-    <label for="nombre">Nombre</label>
-    <input type="text" name="nombre" th:field="*{nombre}" /><br /><br />
-    <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error nombre</span>
-    <br />
+    <label for="nombre">[[#{title.name}]]</label>
+    <input type="text" name="nombre" th:field="*{nombre}" />
+    <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+    <br /><br /><br />
 
-    <label for="apellido">Apellido</label>
-    <input type="text" name="apellido" th:field="*{apellido}" /><br /><br />
-    <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Error apellido</span>
-    <br />
+    <label for="apellido">[[#{title.lastname}]]</label>
+    <input type="text" name="apellido" th:field="*{apellido}" />
+    <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></span>
+    <br /><br /><br />
 
-    <label for="email">email</label>
-    <input type="text" name="email" th:field="*{email}" /><br /><br />
-    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error email</span>
-    <br />
+    <label for="email">[[#{title.email}]]</label>
+    <input type="text" name="email" th:field="*{email}" />
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    <br /><br /><br />
 
-    <label for="telefono">telefono</label>
-    <input type="tel" name="telefono" th:field="*{telefono}" /><br /><br />
+    <label for="telefono">[[#{title.phone}]]</label>
+    <input type="tel" name="telefono" th:field="*{telefono}" />
+    <br /><br /><br />
 
-    <input type="submit" name="guardar" value="Guardar" />
+    <input type="submit" name="guardar" th:value="#{button.save}" />
 
 
 

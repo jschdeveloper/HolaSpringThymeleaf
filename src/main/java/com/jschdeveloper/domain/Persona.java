@@ -27,14 +27,15 @@ public class Persona implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPersona;
 
-	@NotEmpty
+	@NotEmpty(message = "{message.validate.notEmpty.person.name}")
+
 	private String nombre;
 
-	@NotEmpty
+	@NotEmpty(message = "{message.validate.notEmpty.person.lastname}")
 	private String apellido;
 
-	@NotEmpty
-	@Email
+	@NotEmpty(message = "{message.validate.notEmpty.person.email}")
+	@Email(message = "{message.validate.person.email}")
 	private String email;
 
 	private String telefono;
