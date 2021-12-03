@@ -7,7 +7,7 @@
 </head>
 
 <body>
-  <h1>Inicio Thymeleaf</h1>
+  <header th:replace="layout/plantilla :: header" />
   <a th:href="@{/agregar}">Crear Persona</a>
 
   <div th:if="${personas != null and !personas.empty}">
@@ -36,6 +36,8 @@
   <div th:if="${personas == null or personas.empty}">
     La lista de personas esta vacía
   </div>
+
+  <footer th:replace="layout/plantilla :: footer" />
 </body>
 
 </html>
