@@ -12,7 +12,12 @@
   </header>
 
   <footer th:fragment="footer">
-    <p> [[#{template.footer}]] <a href="http://google.com" target="_blank">Global Mentoring</a> </p>
+    <div>
+      <br />
+      <a th:href="@{/(lang=es)}">ES</a> |
+      <a th:href="@{/(lang=en)}">EN</a>
+    </div>
+    <span> [[#{template.footer}]] <a href="http://google.com" target="_blank">Global Mentoring</a> </span>
 
   </footer>
 </body>
