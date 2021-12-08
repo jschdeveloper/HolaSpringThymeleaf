@@ -18,6 +18,9 @@
       <a th:href="@{/(lang=en)}">EN</a>
     </div>
     <span> [[#{template.footer}]] <a href="http://google.com" target="_blank">Global Mentoring</a> </span>
+    <form method="POST" th:action="@{/logout}">
+      <a href="#" onclick="this.parentNode.submit();">Logout</a>
+    </form>
 
   </footer>
 </body>
