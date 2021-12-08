@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+</html>
 
 <head>
   <title>Inicio</title>
@@ -8,7 +10,9 @@
 
 <body>
   <header th:replace="layout/plantilla :: header" />
-  <a th:href="@{/agregar}" th:text="#{title.person.create}"></a>
+
+  <!--Valida que el usuario tenga el ROLE especificado y en el caso que no, no muestra la info -->
+  <a  sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/agregar}" th:text="#{title.person.create}"></a>
 
   <div th:if="${personas != null and !personas.empty}">
     <table border="1">
@@ -17,8 +21,8 @@
         <th>[[#{title.lastname}]]</th>
         <th>[[#{title.email}]]</th>
         <th>[[#{title.phone}]]</th>
-        <th>[[#{button.person.edit}]]</th>
-        <th>[[#{button.person.delete}]]</th>
+        <th sec:authorize="hasRole('ROLE_ADMIN')">[[#{button.person.edit}]]</th>
+        <th sec:authorize="hasRole('ROLE_ADMIN')">[[#{button.person.delete}]]</th>
       </tr>
 
       <tr th:each="persona : ${personas}">
@@ -26,8 +30,8 @@
         <td th:text="${persona.apellido}"></td>
         <td th:text="${persona.email}"></td>
         <td th:text="${persona.telefono}"></td>
-        <td><a th:href="@{/editar/} + ${persona.idPersona}" th:text="#{button.person.edit}"></a></td>
-        <td><a th:href="@{/eliminar(idPersona=${persona.idPersona})}" th:text="#{button.person.delete}"></a></td>
+        <td sec:authorize="hasRole('ROLE_ADMIN')"><a  th:href="@{/editar/} + ${persona.idPersona}" th:text="#{button.person.edit}"></a></td>
+        <td sec:authorize="hasRole('ROLE_ADMIN')"><a  th:href="@{/eliminar(idPersona=${persona.idPersona})}" th:text="#{button.person.delete}"></a></td>
 
       </tr>
 
