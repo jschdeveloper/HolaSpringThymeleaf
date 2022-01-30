@@ -17,10 +17,7 @@ import com.jschdeveloper.dao.UsuarioDAO;
 import com.jschdeveloper.domain.Rol;
 import com.jschdeveloper.domain.Usuario;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Service("userDetailsService")
-@Slf4j
 public class UsuarioService implements UserDetailsService {
 	@Autowired
 	private UsuarioDAO usuarioDAO;
