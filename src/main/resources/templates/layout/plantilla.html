@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head>
-  <meta charset='utf-8' />
-  <title>Plantilla</title>
+<head th:fragment="head">
+    <meta charset='utf-8' />
+    <title>Plantilla</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}">
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
 
 <body>
-  <header th:fragment="header">
-    <h1 th:text="#{template.main.title}"></h1>
-  </header>
+    <header th:fragment="header">
+        <h1 th:text="#{template.main.title}"></h1>
+    </header>
 
-  <footer th:fragment="footer">
-    <div>
-      <br />
-      <a th:href="@{/(lang=es)}">ES</a> |
-      <a th:href="@{/(lang=en)}">EN</a>
-    </div>
-    <span> [[#{template.footer}]] <a href="http://google.com" target="_blank">Global Mentoring</a> </span>
-    <form method="POST" th:action="@{/logout}">
-      <b>User: </b> <span sec:authentication="name">Usuariop que hizo login</span>|
-      <br/>
-      <b>Roles: </b> <span sec:authentication="principal.authorities">Roles </span>|
-      <a href="#" onclick="this.parentNode.submit();">Logout</a>
-    </form>
+    <footer th:fragment="footer">
+        <div>
+            <br />
+            <a th:href="@{/(lang=es)}">ES</a> |
+            <a th:href="@{/(lang=en)}">EN</a>
+        </div>
+        <span> [[#{template.footer}]] <a href="http://google.com" target="_blank">Global Mentoring</a> </span>
+        <form method="POST" th:action="@{/logout}">
+            <b>User: </b> <span sec:authentication="name">Usuariop que hizo login</span>|
+            <br />
+            <b>Roles: </b> <span sec:authentication="principal.authorities">Roles </span>|
+            <a href="#" onclick="this.parentNode.submit();">Logout</a>
+        </form>
 
-  </footer>
+    </footer>
 </body>
 
 </html>

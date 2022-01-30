@@ -3,45 +3,49 @@
 
 </html>
 
-<head>
-  <title>Inicio</title>
-  <meta charset="UTF-8">
+<head th:replace="layout/plantilla :: head">
+    <title>Inicio</title>
+    <meta charset="UTF-8">
 </head>
 
 <body>
-  <header th:replace="layout/plantilla :: header" />
+    <header th:replace="layout/plantilla :: header" />
 
-  <!--Valida que el usuario tenga el ROLE especificado y en el caso que no, no muestra la info -->
-  <a  sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/agregar}" th:text="#{title.person.create}"></a>
+    <!--Valida que el usuario tenga el ROLE especificado y en el caso que no, no muestra la info -->
+    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/agregar}" th:text="#{title.person.create}"></a>
 
-  <div th:if="${personas != null and !personas.empty}">
-    <table border="1">
-      <tr>
-        <th>[[#{title.name}]]</th>
-        <th>[[#{title.lastname}]]</th>
-        <th>[[#{title.email}]]</th>
-        <th>[[#{title.phone}]]</th>
-        <th sec:authorize="hasRole('ROLE_ADMIN')">[[#{button.person.edit}]]</th>
-        <th sec:authorize="hasRole('ROLE_ADMIN')">[[#{button.person.delete}]]</th>
-      </tr>
+    <div th:if="${personas != null and !personas.empty}">
+        <table border="1">
+            <tr>
+                <th>[[#{title.name}]]</th>
+                <th>[[#{title.lastname}]]</th>
+                <th>[[#{title.email}]]</th>
+                <th>[[#{title.phone}]]</th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')">[[#{button.person.edit}]]</th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')">[[#{button.person.delete}]]</th>
+            </tr>
 
-      <tr th:each="persona : ${personas}">
-        <td th:text="${persona.nombre}"></td>
-        <td th:text="${persona.apellido}"></td>
-        <td th:text="${persona.email}"></td>
-        <td th:text="${persona.telefono}"></td>
-        <td sec:authorize="hasRole('ROLE_ADMIN')"><a  th:href="@{/editar/} + ${persona.idPersona}" th:text="#{button.person.edit}"></a></td>
-        <td sec:authorize="hasRole('ROLE_ADMIN')"><a  th:href="@{/eliminar(idPersona=${persona.idPersona})}" th:text="#{button.person.delete}"></a></td>
+            <tr th:each="persona : ${personas}">
+                <td th:text="${persona.nombre}"></td>
+                <td th:text="${persona.apellido}"></td>
+                <td th:text="${persona.email}"></td>
+                <td th:text="${persona.telefono}"></td>
+                <td sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a th:href="@{/editar/} + ${persona.idPersona}" th:text="#{button.person.edit}"></a>
+                </td>
+                <td sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a th:href="@{/eliminar(idPersona=${persona.idPersona})}" th:text="#{button.person.delete}"></a>
+                </td>
 
-      </tr>
+            </tr>
 
-    </table>
-  </div>
-  <div th:if="${personas == null or personas.empty}">
-    [[#{message.empty.list}]]
-  </div>
+        </table>
+    </div>
+    <div th:if="${personas == null or personas.empty}">
+        [[#{message.empty.list}]]
+    </div>
 
-  <footer th:replace="layout/plantilla :: footer" />
+    <footer th:replace="layout/plantilla :: footer" />
 </body>
 
 </html>
